@@ -3,6 +3,15 @@
 
 <img src="examples/laneLines_thirdPass.jpg" width="480" alt="Combined Image" />
 
+Local Docker Run
+---
+
+```bash
+cd <repository>
+docker run -it --rm --entrypoint "/run.sh" -p 8888:8888 -v `pwd`:/src udacity/carnd-term1-starter-kit
+```
+
+
 Overview
 ---
 
