@@ -47,8 +47,8 @@ def get_offset(line):
 
 
 def merge_lines(lines, parameters, slope_history, offset_history):
-    b = parameters["y_bottom"]
-    t = parameters["y_top"]
+    b = parameters.y_bottom
+    t = parameters.y_top
     n_lines = len(lines)
 
     slope = 0
@@ -59,7 +59,7 @@ def merge_lines(lines, parameters, slope_history, offset_history):
 
     # -------------------------------------------
     # moving average
-    history_size = parameters["history_size"]
+    history_size = parameters.history_size
     slope_history.append(slope)
     offset_history.append(offset)
     if len(slope_history) > history_size:
@@ -84,10 +84,10 @@ def extract_lr_lines(lines, parameters):
             right_candidates.append(line)
 
     left_line = merge_lines(
-        left_candidates, parameters, parameters["l_slopes"], parameters["l_offsets"]
+        left_candidates, parameters, parameters.l_slopes, parameters.l_offsets
     )
     right_line = merge_lines(
-        right_candidates, parameters, parameters["r_slopes"], parameters["r_offsets"]
+        right_candidates, parameters, parameters.r_slopes, parameters.r_offsets
     )
     return [left_line, right_line]
 

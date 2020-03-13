@@ -12,26 +12,10 @@ def Task1():
     size_y = image.shape[0]
     print("This image is:", type(image), "with dimensions:", image.shape)
 
-    parameters["history_size"] = 10
-    parameters["debug"] = False
-    parameters["y_bottom"] = size_y
-    parameters["y_top"] = 320
-    parameters["vertices"] = np.array(
-        [
-            [
-                (100, size_y),
-                (430, parameters["y_top"]),
-                (540, parameters["y_top"]),
-                (size_x - 50, size_y),
-            ]
-        ],
-        dtype=np.int32,
-    )
-
     cnt = 1
-    parameters["debug"] = True
+    parameters = Parameters(size_x, size_y)
+    parameters.debug = True
     for filename in os.listdir("test_images/"):
-        reset_history(parameters)
         image = mpimg.imread("test_images/" + filename)
         [gray, blurred, cannied, masked, houghed, weighted] = process(image, parameters)
         draw(image, gray, blurred, cannied, masked, houghed, weighted, parameters, cnt)
